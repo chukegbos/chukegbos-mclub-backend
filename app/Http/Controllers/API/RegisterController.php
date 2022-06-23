@@ -38,7 +38,8 @@ class RegisterController extends BaseController
 
     public function login(Request $request)
     {
-        return $request;
+        // return $request;
+        
         $user = User::where('username', $request->username)->first();
         return response()->json($user);
 
