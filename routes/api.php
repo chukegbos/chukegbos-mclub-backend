@@ -22,9 +22,9 @@ Route::namespace('App\\Http\\Controllers\\API')->group(function () {
     //   Route::post('register', [App\Http\Controllers\API\RegisterController::class, 'register']);
     //Route::post('login', [RegisterController::class, 'login']);   
     Route::post('login', 'RegisterController@login');
-    Route::post('logout', 'RegisterController@logout');
     
     Route::middleware('auth:api')->group( function () {
+        Route::post('logout', 'RegisterController@logout');
         Route::group(['prefix' => 'setting'], function(){
             Route::get('', 'SettingController@index');
             Route::get('me', 'SettingController@me');

@@ -40,7 +40,8 @@ class RegisterController extends BaseController
     {
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){ 
             $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+            Auth::login($user);
+            $success['token'] =  $user->createToken('MyApp')->accessToken; 
             $success['user'] =  $user;
             $success['club'] =  Club::find($user->club_id);
             return $this->sendResponse($success, 'User logged in successfully.');
@@ -52,7 +53,7 @@ class RegisterController extends BaseController
 
     public function logout()
     {
-        return $user = Auth::user();
+        $user = Auth::user()->token();
         $user->revoke();
         return response()->json('Successfully logged out', 200);
     }
