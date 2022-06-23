@@ -38,11 +38,6 @@ class RegisterController extends BaseController
 
     public function login(Request $request)
     {
-        // return $request;
-        
-        $user = User::where('username', $request->username)->first();
-        return response()->json($user);
-
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){ 
             $user = Auth::user(); 
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
