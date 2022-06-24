@@ -20,7 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::namespace('App\\Http\\Controllers\\API')->group(function () {
     // Route::post('register', [App\Http\Controllers\API\RegisterController::class, 'register']);
-    //Route::post('login', [RegisterController::class, 'login']);  
 
     Route::post('login', 'RegisterController@login');
     
@@ -39,6 +38,16 @@ Route::namespace('App\\Http\\Controllers\\API')->group(function () {
     });
 });
 
-
+Route::namespace('App\\Http\\Controllers')->group(function () {
+    Route::middleware('auth:api')->group( function () {
+        Route::group(['prefix' => 'section'], function(){
+            Route::get('', 'SectionController@index');
+            Route::get('delete', 'SectionController@destroy');
+            Route::get('{id}', 'SectionController@view');
+            Route::put('{id}', 'SectionController@update');
+            Route::post('', 'SectionController@store');
+        });
+    });
+});
 
 
