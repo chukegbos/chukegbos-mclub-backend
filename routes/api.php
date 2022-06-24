@@ -19,18 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('App\\Http\\Controllers\\API')->group(function () {
-    //Route::post('register', 'RegisterController@register');
-    //Route::post('login', [RegisterController::class, 'login']);   
+    // Route::post('register', [App\Http\Controllers\API\RegisterController::class, 'register']);
+    //Route::post('login', [RegisterController::class, 'login']);  
+
     Route::post('login', 'RegisterController@login');
-    Route::post('logout', 'RegisterController@logout');
     
     Route::middleware('auth:api')->group( function () {
-        Route::group(['prefix' => 'setting'], function(){
-            Route::get('', 'SettingController@index');
-            Route::get('me', 'SettingController@me');
-            Route::put('{id}', 'SettingController@update');
-            Route::put('standard/{id}', 'SettingController@standardupdate');
+        Route::post('logout', 'RegisterController@logout');
 
+        Route::group(['prefix' => 'setting'], function(){
             Route::group(['prefix' => 'session'], function(){
                 Route::get('', 'SessionController@index');
                 Route::get('delete', 'SessionController@destroy');

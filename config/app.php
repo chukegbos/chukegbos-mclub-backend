@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'MCLUB'),
     'end_point_token' => env('BASE_URL_TOKEN'),
     'endpoint_base_url' => env('BASE_URL'),
 

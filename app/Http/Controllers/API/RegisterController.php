@@ -18,7 +18,7 @@ class RegisterController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'username' => 'required|string',
             'password' => 'required',
             'c_password' => 'required|same:password',
         ]);
@@ -32,14 +32,16 @@ class RegisterController extends BaseController
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
-        return $this->sendResponse($success, 'User register successfully.');
+
+        return $this->sendResponse($success, 'User registered successfully.');
     }
 
     public function login(Request $request)
     {
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){ 
             $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+            Auth::login($user);
+            $success['token'] =  $user->createToken('MyApp')->accessToken; 
             $success['user'] =  $user;
             $success['club'] =  Club::find($user->club_id);
             return $this->sendResponse($success, 'User logged in successfully.');
@@ -51,7 +53,7 @@ class RegisterController extends BaseController
 
     public function logout()
     {
-        $user = Auth::user();
+        $user = Auth::user()->token();
         $user->revoke();
         return response()->json('Successfully logged out', 200);
     }
