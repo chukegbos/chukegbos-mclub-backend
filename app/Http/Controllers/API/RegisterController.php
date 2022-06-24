@@ -51,7 +51,7 @@ class RegisterController extends BaseController
 
     public function logout()
     {
-        return $user = Auth::user();
+        $user = Auth::user();
         $user->revoke();
         return response()->json('Successfully logged out', 200);
     }
