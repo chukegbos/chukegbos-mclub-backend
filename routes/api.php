@@ -47,6 +47,14 @@ Route::namespace('App\\Http\\Controllers')->group(function () {
             Route::put('{id}', 'SectionController@update');
             Route::post('', 'SectionController@store');
         });
+
+        Route::group(['prefix' => 'type'], function(){
+            Route::get('', 'TypeController@index');
+            Route::get('delete', 'TypeController@destroy');
+            Route::get('{id}', 'TypeController@view');
+            Route::put('{id}', 'TypeController@update');
+            Route::post('', 'TypeController@store');
+        });
     });
 });
 
