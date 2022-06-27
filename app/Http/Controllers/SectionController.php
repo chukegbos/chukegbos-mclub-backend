@@ -18,6 +18,7 @@ class SectionController extends BaseController
 
     public function __construct()
     {
+        $this->middleware('api');
         $this->club_id = Auth('api')->user()->club_id;
         $this->user_id = Auth('api')->user()->id;
     }
