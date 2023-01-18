@@ -41,9 +41,10 @@ class RegisterController extends BaseController
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){ 
             $user = Auth::user(); 
             Auth::login($user);
+            $success['club'] =  Club::find($user->club_id);
             $success['token'] =  $user->createToken('MyApp')->accessToken; 
             $success['user'] =  $user;
-            $success['club'] =  Club::find($user->club_id);
+            
             return $this->sendResponse($success, 'User logged in successfully.');
         } 
         else{ 

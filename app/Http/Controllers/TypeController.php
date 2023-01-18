@@ -23,9 +23,10 @@ class TypeController extends BaseController
         $this->user_id = Auth('api')->user()->id;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $success = Type::where('club_id', $this->club_id)->where('deleted_at', NULL)->paginate(20);
+        $success = Type::where('club_id', $this->club_id)->where('deleted_at', NULL)->latest()->get();
+
 
         if($success){ 
             return $this->sendResponse($success, 'Type fetched successfully.');
