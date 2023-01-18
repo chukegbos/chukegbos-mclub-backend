@@ -1,0 +1,22 @@
+# general deployment code
+---
+deployment: 
+tasks:  
+# - export DEPLOYPATH=/home/specstec/clubapi.specstechafrica.com/ 
+- /bin/cp -R app /home/specstec/clubapi.specstechafrica.com/ 
+- /bin/cp -R bootstrap /home/specstec/clubapi.specstechafrica.com/ 
+- /bin/cp -R config /home/specstec/clubapi.specstechafrica.com/ 
+- /bin/cp -R database /home/specstec/clubapi.specstechafrica.com/ 
+- /bin/cp -R resources /home/specstec/clubapi.specstechafrica.com/ 
+- /bin/cp -R routes /home/specstec/clubapi.specstechafrica.com/ 
+- /bin/cp -R storage /home/specstec/clubapi.specstechafrica.com/ 
+- /bin/cp -R tests /home/specstec/clubapi.specstechafrica.com/ 
+- /bin/cp .cpanel.yml /home/specstec/clubapi.specstechafrica.com 
+- /bin/cp babel.config.js /home/specstec/clubapi.specstechafrica.com 
+- /bin/cp composer.json /home/specstec/clubapi.specstechafrica.com 
+- /bin/cp package-lock.json /home/specstec/clubapi.specstechafrica.com 
+- /bin/cp package.json /home/specstec/clubapi.specstechafrica.com 
+- /bin/cp phpunit.xml /home/specstec/clubapi.specstechafrica.com 
+- /bin/cp README.md /home/specstec/clubapi.specstechafrica.com 
+- /bin/cp server.php /home/specstec/clubapi.specstechafrica.com 
+- /bin/cp webpack.mix.js /home/specstec/clubapi.specstechafrica.com
